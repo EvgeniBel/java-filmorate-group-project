@@ -121,7 +121,7 @@ public class FilmDbStorage implements FilmStorage {
     public Film getFilmById(Long id) {
         try {
             Film film = jdbcTemplate.queryForObject(GET_ID_QUERY, new FilmRowMapper(), id);
-            Objects.requireNonNull(film).setGenres(loadGenres(id));
+            film.setGenres(loadGenres(id));
             film.setLikes(loadLikes(id));
             film.setDirectors(loadDirectors(film));
             return film;
